@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Time Gap Analyzer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Outfit:wght@300;400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fef7ff; --sf: #ffffff; --bd: #ede9fe;
+      --tx: #3b1f5e; --t2: #7c5ab8; --ac: #7c3aed;
+      --header-bg: #7c3aed; --header-tx: #ffffff;
+      --fn: 'Nunito'; color-scheme: light;
+    }
+    [data-theme="dark"] {
+      --bg: #050a1c; --sf: rgba(255,255,255,.04); --bd: rgba(255,255,255,.07);
+      --tx: rgba(255,255,255,.8); --t2: rgba(255,255,255,.4); --ac: #4dffa6;
+      --header-bg: #050a1c; --header-tx: #4dffa6;
+      --fn: 'Outfit'; color-scheme: dark;
+    }
+
+    body { font-family: var(--fn), sans-serif; background: var(--bg); color: var(--tx); min-height: 100vh; padding: 20px; }
+
+    .container { max-width: 800px; margin: 0 auto; background: var(--sf); border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); overflow: hidden; }
+
+    header {
+      background: var(--header-bg); color: var(--header-tx);
+      padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .header-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .header-brand h1 { font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
+    .header-brand p { font-size: 12px; opacity: 0.7; margin: 0; }
+    .header-brand a { color: inherit; opacity: 0.85; }
+    .ext-links { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .ext-link {
+      display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+      border-radius: 20px; font-size: 12px; font-weight: 500; text-decoration: none;
+      background: rgba(255,255,255,0.15); color: inherit; border: 1px solid rgba(255,255,255,0.35);
+      transition: background 0.2s;
+    }
+    .ext-link:hover { background: rgba(255,255,255,0.28); }
+
+    .content { padding: 40px 56px; }
+
+    h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+    .updated { font-size: 0.8rem; color: var(--t2); margin-bottom: 28px; }
+
+    .summary-box {
+      background: var(--bg); border: 1px solid var(--bd); border-radius: 8px;
+      padding: 16px 20px; margin-bottom: 28px; font-size: 0.9rem; line-height: 1.6;
+    }
+
+    h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ac); margin: 24px 0 10px; }
+    p { font-size: 0.9rem; line-height: 1.7; color: var(--tx); margin-bottom: 10px; }
+    ul { padding-left: 20px; margin-bottom: 10px; }
+    li { font-size: 0.9rem; line-height: 1.7; color: var(--tx); margin-bottom: 6px; }
+    a.inline { color: var(--ac); }
+
+    .back { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--t2); text-decoration: none; margin-top: 32px; }
+    .back:hover { color: var(--ac); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-bar">
+    <div class="header-brand">
+      <h1>⏱️ Time Gap Analyzer</h1>
+      <p>No cloud · no external APIs · in-memory · no data stored · <a href="/example.png" target="_blank">view example</a></p>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);color:inherit;border-radius:6px;padding:4px 12px;cursor:pointer;font-size:0.75rem;font-family:inherit;letter-spacing:0.04em;transition:background 0.2s">🌙 Dark</button>
+  </div>
+  <div class="ext-links">
+    <a class="ext-link" href="https://chromewebstore.google.com/detail/hfiloaakinclbfkfaojjdgfjaciegoab" target="_blank" rel="noopener">Chrome</a>
+    <a class="ext-link" href="https://addons.mozilla.org/en-US/firefox/addon/time-gap-analyzer/" target="_blank" rel="noopener">Firefox</a>
+    <span class="ext-link" style="opacity:0.45">Edge — coming soon</span>
+  </div>
+</header>
+
+<div class="content">
+  <h2>Privacy Policy</h2>
+  <p class="updated">Last updated: 13 June 2026</p>
+
+  <div class="summary-box">
+    <strong>Summary:</strong> Time Gap Analyzer does not store, sell, or share any data. Your screenshot is processed in server memory and discarded immediately after the results are returned to your browser.
+  </div>
+
+  <h3>What the app does</h3>
+  <p>When you upload a screenshot, it is sent from your browser to the server, analysed using a locally-installed Tesseract OCR engine, and a summary of time gaps, overlaps, and pay-requirement checks is returned to your browser. No data is retained after the response is sent.</p>
+
+  <h3>Data handling</h3>
+  <ul>
+    <li><strong>Screenshots</strong> are held in server memory only for the duration of the analysis (typically under a second), then discarded. They are never written to disk, never retained between requests, and never transmitted to any third party.</li>
+    <li><strong>Timesheet times</strong> read from the screenshot exist only in memory during analysis and are discarded when the response is sent.</li>
+    <li><strong>Settings</strong> (required start time, minimum logged hours) are sent as form fields with each request. They are not stored on the server — you set them fresh each session.</li>
+  </ul>
+
+  <h3>Network activity</h3>
+  <p>The server makes no outbound network requests. All OCR processing uses a locally-installed Tesseract engine — there are no external APIs, no model downloads, and no CDN calls. Your screenshot never leaves the server it was sent to.</p>
+
+  <h3>Third parties</h3>
+  <p>The app does not use analytics, advertising, tracking, or any third-party data-collection services.</p>
+
+  <h3>Data sale and transfer</h3>
+  <p>No user data is sold or transferred to any third party, used for any purpose unrelated to analysing your screenshot, or used to determine creditworthiness or for lending purposes.</p>
+
+  <h3>Browser extension</h3>
+  <p>The companion browser extension has a <a class="inline" href="/extension-privacy">separate privacy policy</a> — its data handling differs because OCR runs locally in your browser rather than on a server.</p>
+
+  <h3>Contact</h3>
+  <p><a class="inline" href="mailto:ebaikie@gmail.com">ebaikie@gmail.com</a></p>
+
+  <a class="back" href="/">← Back to Time Gap Analyzer</a>
+</div>
+
+</div>
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('theme-toggle').textContent = t === 'dark' ? '☀️ Light' : '🌙 Dark';
+  }
+  function toggleTheme() {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  }
+  (function() {
+    const saved = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(saved);
+  })();
+</script>
+</body>
+</html>

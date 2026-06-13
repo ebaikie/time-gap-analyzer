@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Outfit:wght@300;400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fef7ff; --sf: #ffffff; --bd: #ede9fe;
+      --tx: #3b1f5e; --t2: #7c5ab8; --ac: #7c3aed;
+      --header-bg: #7c3aed; --header-tx: #ffffff;
+      --fn: 'Nunito'; color-scheme: light;
+    }
+    [data-theme="dark"] {
+      --bg: #050a1c; --sf: rgba(255,255,255,.04); --bd: rgba(255,255,255,.07);
+      --tx: rgba(255,255,255,.8); --t2: rgba(255,255,255,.4); --ac: #4dffa6;
+      --header-bg: #050a1c; --header-tx: #4dffa6;
+      --fn: 'Outfit'; color-scheme: dark;
+    }
+
+    body { font-family: var(--fn), sans-serif; background: var(--bg); color: var(--tx); min-height: 100vh; padding: 20px; }
+
+    .container { max-width: 800px; margin: 0 auto; background: var(--sf); border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); overflow: hidden; }
+
+    header {
+      background: var(--header-bg); color: var(--header-tx);
+      padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .header-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .header-brand h1 { font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
+    .header-brand p { font-size: 12px; opacity: 0.7; margin: 0; }
+    .ext-links { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .ext-link {
+      display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+      border-radius: 20px; font-size: 12px; font-weight: 500; text-decoration: none;
+      background: rgba(255,255,255,0.15); color: inherit; border: 1px solid rgba(255,255,255,0.35);
+      transition: background 0.2s;
+    }
+    .ext-link:hover { background: rgba(255,255,255,0.28); }
+
+    .content { padding: 40px 56px; }
+
+    h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+    .updated { font-size: 0.8rem; color: var(--t2); margin-bottom: 28px; }
+    .source-note {
+      font-size: 0.75rem; color: var(--t2); margin-bottom: 20px;
+      padding: 8px 12px; border-radius: 6px; border: 1px solid var(--bd);
+      display: inline-block;
+    }
+
+    .summary-box {
+      background: var(--bg); border: 1px solid var(--bd); border-radius: 8px;
+      padding: 16px 20px; margin-bottom: 28px; font-size: 0.9rem; line-height: 1.6;
+    }
+
+    h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ac); margin: 24px 0 10px; }
+    p { font-size: 0.9rem; line-height: 1.7; color: var(--tx); margin-bottom: 10px; }
+    a.inline { color: var(--ac); }
+
+    .back { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--t2); text-decoration: none; margin-top: 32px; }
+    .back:hover { color: var(--ac); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-bar">
+    <div class="header-brand">
+      <h1>⏱️ Time Gap Analyzer</h1>
+      <p>Browser Extension Privacy Policy</p>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);color:inherit;border-radius:6px;padding:4px 12px;cursor:pointer;font-size:0.75rem;font-family:inherit;letter-spacing:0.04em;transition:background 0.2s">🌙 Dark</button>
+  </div>
+  <div class="ext-links">
+    <a class="ext-link" href="https://chromewebstore.google.com/detail/hfiloaakinclbfkfaojjdgfjaciegoab" target="_blank" rel="noopener">Chrome</a>
+    <a class="ext-link" href="https://addons.mozilla.org/en-US/firefox/addon/time-gap-analyzer/" target="_blank" rel="noopener">Firefox</a>
+    <span class="ext-link" style="opacity:0.45">Edge — coming soon</span>
+  </div>
+</header>
+
+<div class="content">
+  <h2>{{ title }}</h2>
+  {% if updated %}<p class="updated">{{ updated }}</p>{% endif %}
+
+  <p class="source-note">
+    {% if live %}
+      ✓ Live from <a class="inline" href="https://gist.github.com/ebaikie/1a18d21a217f5472831445927edc1c9c" target="_blank" rel="noopener">GitHub Gist</a> — always up to date
+    {% else %}
+      ⚠ Gist unreachable — showing cached copy
+    {% endif %}
+  </p>
+
+  {% for section in sections %}
+    {% if section.type == 'heading' %}
+      <h3>{{ section.text }}</h3>
+    {% elif section.type == 'summary' %}
+      <div class="summary-box">{{ section.text }}</div>
+    {% else %}
+      <p>{{ section.text }}</p>
+    {% endif %}
+  {% endfor %}
+
+  <a class="back" href="/privacy">← Back to Privacy Policy</a>
+</div>
+
+</div>
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('theme-toggle').textContent = t === 'dark' ? '☀️ Light' : '🌙 Dark';
+  }
+  function toggleTheme() {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  }
+  (function() {
+    const saved = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(saved);
+  })();
+</script>
+</body>
+</html>
