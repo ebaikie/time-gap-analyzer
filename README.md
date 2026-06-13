@@ -42,4 +42,4 @@ Runs on port 5065 by default.
 
 ## Privacy
 
-All processing is server-side and in-memory. No data is stored or transmitted to third parties. See [/privacy](/privacy) for the full policy.
+All processing is server-side and in-memory. No data is stored or transmitted to third parties. See the [Privacy Policy](https://timegapanalyzer.113374.xyz/privacy) for the full policy.
