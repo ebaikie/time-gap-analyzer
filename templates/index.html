@@ -407,21 +407,25 @@
             margin-bottom: 20px;
             margin-left: 26px;
             margin-right: 26px;
-            border: 1px solid var(--bd);
-            border-radius: 8px;
-            overflow: hidden;
         }
 
         .settings-panel summary {
-            padding: 10px 16px;
+            display: inline-block;
+            padding: 10px 24px;
             cursor: pointer;
-            font-size: 13px;
-            color: var(--ac);
-            font-weight: 500;
-            background: var(--sf);
+            font-size: 0.86rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: var(--btn-tx);
+            background: var(--ac);
+            border-radius: 8px;
             user-select: none;
             list-style: none;
+            transition: opacity 0.15s, transform 0.1s;
         }
+
+        .settings-panel summary:hover { opacity: 0.88; }
+        .settings-panel summary:active { transform: scale(0.97); }
 
         .settings-panel summary::-webkit-details-marker { display: none; }
 
@@ -434,7 +438,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             padding: 16px;
+            margin-top: 8px;
             background: var(--sf);
+            border: 1px solid var(--bd);
+            border-radius: 8px;
         }
 
         .settings-grid label {

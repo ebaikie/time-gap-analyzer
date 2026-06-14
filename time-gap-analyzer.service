@@ -1,0 +1,16 @@
+[Unit]
+Description=Time Gap Analyzer
+After=network.target
+
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/home/user/Apps/time-gap-analyzer
+ExecStart=/usr/bin/python3 /home/user/Apps/time-gap-analyzer/app.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
