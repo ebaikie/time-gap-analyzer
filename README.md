@@ -17,7 +17,7 @@ Screenshot OCR → timesheet gap and overlap checker. Upload a screenshot of you
 
 - **Backend:** Flask + Tesseract OCR (pytesseract, Pillow)
 - **OCR pipeline:** grayscale → upscale to ~2800px → Otsu binarize → Tesseract with digit/colon whitelist
-- **Process manager:** PM2
+- **Process manager:** systemd
 
 ## Browser Extensions
 
@@ -39,6 +39,37 @@ python app.py
 ```
 
 Runs on port 5065 by default.
+
+## Self-Hosting / Keeping It Alive (systemd)
+
+A systemd service file is included (`time-gap-analyzer.service`). To install it:
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/ebaikie/time-gap-analyzer.git
+cd time-gap-analyzer
+
+# 2. Install dependencies
+sudo apt install tesseract-ocr python3-pip -y
+pip install -r requirements.txt
+
+# 3. Edit the service file to match your username and path
+#    Change User= and WorkingDirectory= and ExecStart= if needed
+nano time-gap-analyzer.service
+
+# 4. Install and enable the service
+sudo cp time-gap-analyzer.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable time-gap-analyzer
+sudo systemctl start time-gap-analyzer
+```
+
+Check status and logs:
+
+```bash
+sudo systemctl status time-gap-analyzer
+sudo journalctl -u time-gap-analyzer -f
+```
 
 ## Privacy
 
